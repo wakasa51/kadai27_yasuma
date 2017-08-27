@@ -7,9 +7,9 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="btn">ボタンだよ</div>
-  <div id="btn1">ボタン１だよ</div>
-  <div id="btn2">ボタン２だよ</div>
+  <div id="btn">グーボタン</div>
+  <div id="btn1">チョキボタン</div>
+  <div id="btn2">パーボタン</div>
   <script>
     // console.log("初めてのジャバスクリプト");
     // console.log(23 * 5);
@@ -61,20 +61,35 @@
     // document.getElementById('btn1');
     // document.getElementById('btn2');
 
-    var btn = document.getElementById('btn');
+    // var btn = document.getElementById('btn');
     var btn1 = document.getElementById('btn1');
     var btn2 = document.getElementById('btn2');
+    // btn.addEventListener('click', function(){
+    //   btn.innerHTML = '変更したよ';
+    // });
+    //
+    // btn1.addEventListener('click', function(){
+    //   btn1.innerHTML = '<h1>初めてのジャバスクリプト</h1>';
+    // });
+    //
+    // btn2.addEventListener('click', function(){
+    //   btn2.innerHTML = '<img src="https://www.google.co.jp/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwio4JTX5PbVAhVOObwKHarJC10QjRwIBw&url=https%3A%2F%2Fgori.me%2Fgoogle&psig=AFQjCNGK54WIZlk9GYBpfl5UZZi3LS1DFQ&ust=1503901733117770" alt="" />';
+    // });
+
+    var rand = Math.floor(Math.random() * 3);
+    var btn = document.getElementById('btn');
     btn.addEventListener('click', function(){
-      btn.innerHTML = '変更したよ';
+      if(rand == 0){
+        btn.innerHTML = '<h1>勝ち！</h1>';
+      }else if(rand == 1){
+        btn.innerHTML = '<h1>あいこ！</h1>';
+      }else if(rand == 2){
+        btn.innerHTML = '<h1>負け！</h1>';
+      }
     });
 
-    btn1.addEventListener('click', function(){
-      btn1.innerHTML = '<h1>初めてのジャバスクリプト</h1>';
-    });
-
-    btn2.addEventListener('click', function(){
-      btn2.innerHTML = '<img src="https://www.google.co.jp/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwio4JTX5PbVAhVOObwKHarJC10QjRwIBw&url=https%3A%2F%2Fgori.me%2Fgoogle&psig=AFQjCNGK54WIZlk9GYBpfl5UZZi3LS1DFQ&ust=1503901733117770" alt="" />';
-    });
+    //じゃんけんを作る、画像を使う、コピュータの手も考えて表示、できた方はif文を使って何か違うものを作る
+    // 金曜日の23:59までにギットハブにプッシュ
 
   </script>
 </body>
