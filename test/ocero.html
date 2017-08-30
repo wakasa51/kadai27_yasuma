@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="css/reset.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <script src="js/common.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id="wrapper">
+  <header>
+    <p>楽しいオセロ</p>
+  </header>
+  <div id="game-board"></div>
+  <div id="now-player"></div>
+  <div id="get-count"></div>
+  <div id="end-game"></div>
+</div>
+<script>
+$(document).ready(function(){
+  var number_square = 4;  //オセロのマス目
+  var player = 'black';   //プレイヤーが黒の番か、白の番か。最初は黒。
+  var opponent = 'white';  //最初は待ちは白
+  var now_board = [[]];  //各マスの中身を識別する配列
+  var pass_count = 0;  //パスの押された回数
+
+
+  // 最初の盤面を表示
+  display_board(make_initial_board(number_square, now_board), player, number_square);
+
+  //マスが押された時の動作
+  $(document).on("click", (".empty"), function(){
+    pass_count = 0;
+    // 相手プレイヤーの確認
+    //クリックされたemptyのid値をとる処理
+    var tmp =  $(this).attr("id");
+    // idを元にクリックされた場所の配列の座標を取得
+    var xa = tmp.substr(1,1);
+    var ya = tmp.substr(3,1);
+    // クリックされた場所に置けるかチェック
+    // まず隣接地９マスのセルの中身を配列の中に格納
+    var check = check_around(now_board, xa, ya);
+    // クリックされた場所の隣接地に相手の石があるか確認
+    var check_opponent_stone;
+    var i = 0;
+    do{
+      check_opponent_stone = check[i];
+      if(check_opponent_stone == opponent){
+        // 相手の石がある場合はその先に自身の石があるかどうか確認
+        var check_player_stone;
+        xv = move_number(i)[0];
+        yv = move_number(i)[1];
+        var xc = parseInt(xa) + parseInt(xv);
+        var yc = parseInt(ya) + parseInt(yv);
+        var c = 0;
+        do{
+          check_player_stone = now_board[[xc, yc]];
+          if(check_player_stone==player){
+            // 石をひっくり返す処理
+            now_board = reverse_stone(xc, yc, xv, yv, player, opponent, now_board, number_square);
+            // 一回でもひっくり返したらクリックした場所へ配置と描画とプレイヤー変更の処理のフラグを立てる
+            var next_flg = "Next";
+            break;
+          }else if(check_player_stone!=opponent){
+            // 先にあるのが自身の石以外の場合は処理を終了
+            break;
+          }
+          xc = xc + (xv/2);
+          yc = yc + (yv/2);
+          c = c + 1;
+        }while(c<number_square);
+      }
+      i = i + 1;
+    }while(i < 9);
+    // フラグが立っていたら下記の処理を実行
+    if(next_flg=="Next"){
+      // クリックした場所に自身の石の値を格納
+      now_board = put_stone_board(xa, ya, player, now_board);
+      // プレイヤーを変える処理を実行
+      player = player_change(player);
+      opponent = opponent_change(player, opponent);
+      // 画面に結果を描画
+      display_board(now_board, player, number_square);
+      get_stone_count_all = simulation_get_stone(now_board, number_square, player, opponent);
+      get_max_count(get_stone_count_all, number_square);
+      // ゲーム終了の判定の関数
+      game_end(now_board, number_square, pass_count);
+    }
+  });
+
+  // パスボタンが押された時の動作
+  $(document).on("click", (".pass-btn"), function(){
+    pass_count = pass_count + 1;
+    player = player_change(player);
+    opponent = opponent_change(player, opponent);
+    display_board(now_board, player, number_square);
+    get_stone_count_all = simulation_get_stone(now_board, number_square, player, opponent);
+    get_max_count(get_stone_count_all, number_square);
+    // ゲーム終了の判定の関数
+    game_end(now_board, number_square, pass_count);
+});
+
+});
+</script>
+</body>
+</html>

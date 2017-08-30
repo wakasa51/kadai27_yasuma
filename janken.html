@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="css/reset.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery-2.1.4.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="wrapper">
+    <img src="http://nomucci.com/wp-content/uploads/2016/08/08776ee37e8ffff4ce65c2f8882a62c0-1.jpg" alt="じゃんけんだよ" class="top-img">
+    <div id="janken_result"></div>
+    <div id="janken_btn">
+      <button id="btn_g" class="janken-btn">グー</button>
+      <button id="btn_c" class="janken-btn">チョキ</button>
+      <button id="btn_p" class="janken-btn">パー</button>
+    </div>
+    <button id="return" class="return-btn" onclick="window.location.reload();">戻る</button>
+  </div>
+
+<script>
+  var choki = '<img src="https://t.pimg.jp/001/428/523/1/1428523.jpg" alt="" width="200px"/>'
+  var gu = '<img src="https://t.pimg.jp/001/428/522/1/1428522.jpg" alt="" width="200px"/>'
+  var pa = '<img src="https://t.pimg.jp/001/428/526/1/1428526.jpg" alt="" width="200px"/>'
+	$(document).ready(function(){
+	//この中に書く！上の記述があるとHTMLやCSSが読み込んだあとで実行される。
+    var rand = Math.floor(Math.random() * 3);
+    $("#btn_g").on("click", function(){
+      if(rand == 0){
+        $("#janken_result").html(
+          '<h1 class="aite">相手</h1>'
+        + choki
+        + '<h1>あなたの勝ち！</h1>'
+        );
+      }else if(rand == 1){
+        $("#janken_result").html(
+          '<h1 class="aite">相手</h1>'
+          + gu
+          + '<h1>あいこ！</h1>'
+        );
+      }else if(rand == 2){
+        $("#janken_result").html(
+        '<h1 class="aite">相手</h1>'
+        + pa
+        + '<h1>あなたの負け！</h1>'
+        );
+      }
+      $("#janken_btn").hide(0);
+      $("#return").show(0);
+      $(".top-img").hide(0);
+    });
+
+    $("#btn_c").on("click", function(){
+      if(rand == 0){
+        $("#janken_result").html(
+          '<h1 class="aite">相手</h1>'
+        + pa
+        + '<h1>あなたの勝ち！</h1>'
+        );
+      }else if(rand == 1){
+        $("#janken_result").html(
+          '<h1 class="aite">相手</h1>'
+          + choki
+          + '<h1>あいこ！</h1>'
+        );
+      }else if(rand == 2){
+        $("#janken_result").html(
+        '<h1 class="aite">相手</h1>'
+        + gu
+        + '<h1>あなたの負け！</h1>'
+        );
+      }
+      $("#janken_btn").hide(0);
+      $("#return").show(0);
+      $(".top-img").hide(0);
+    });
+
+    $("#btn_p").on("click", function(){
+      if(rand == 0){
+        $("#janken_result").html(
+          '<h1 class="aite">相手</h1>'
+        + gu
+        + '<h1>あなたの勝ち！</h1>'
+        );
+      }else if(rand == 1){
+        $("#janken_result").html(
+          '<h1 class="aite">相手</h1>'
+          + pa
+          + '<h1>あいこ！</h1>'
+        );
+      }else if(rand == 2){
+        $("#janken_result").html(
+        '<h1 class="aite">相手</h1>'
+        + choki
+        + '<h1>あなたの負け！</h1>'
+        );
+      }
+      $("#janken_btn").hide(0);
+      $("#return").show(0);
+      $(".top-img").hide(0);
+    });
+  });
+
+  // じゃんけんを作る、画像を使う、コピュータの手も表示、できた方はif文を使って何か違うものを作る
+  // 金曜日の23:59までにギットハブにプッシュ
+</script>
+
+</body>
+</html>
