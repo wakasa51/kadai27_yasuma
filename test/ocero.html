@@ -15,22 +15,43 @@
   <header>
     <p>楽しいオセロ</p>
   </header>
-  <div id="game-board"></div>
+  <div id="form"></div>
+  <div id="game-zone">
+    <div id="player-white"></div>
+    <div id="game-board"></div>
+    <div id="player-black"></div>
+  </div>
   <div id="now-player"></div>
   <div id="get-count"></div>
   <div id="end-game"></div>
+  <button class="return-top" onclick="window.location.reload();">マス選択に戻る</button>
 </div>
 <script>
 $(document).ready(function(){
-  var number_square = 4;  //オセロのマス目
+  var number_square = 0;  //オセロのマス目
   var player = 'black';   //プレイヤーが黒の番か、白の番か。最初は黒。
   var opponent = 'white';  //最初は待ちは白
   var now_board = [[]];  //各マスの中身を識別する配列
   var pass_count = 0;  //パスの押された回数
+  var first = [];  //最初の画面
+  first.push("<form class='top-form' name='top_form' action='javascript:void(0)' onsubmit='return false'>");
+  first.push("<p class='question'>何マス×何マスでオセロしますか？</p>");
+  first.push("<select class='select-block' name='select'>")
+  first.push("<option value='4'>4マス</option><option value='6'>6マス</option>");
+  first.push("<option value='8'>8マス</option><option value='10'>10マス</option>");
+  first.push("</select><button class='game_start'>ゲーム開始</button></form>");
+  $('#form').html(first.join(''));
 
-
-  // 最初の盤面を表示
-  display_board(make_initial_board(number_square, now_board), player, number_square);
+  $(document).on("click", (".game_start"),function(){
+    if(number_square==0){
+      number_square = document.top_form.select.value;
+      $("#form").empty();
+    }
+    $("#get-count").empty();
+    $("#end-game").empty();
+    // 最初の盤面を表示
+    display_board(make_initial_board(number_square, now_board), player, number_square);
+  });
 
   //マスが押された時の動作
   $(document).on("click", (".empty"), function(){
@@ -60,7 +81,7 @@ $(document).ready(function(){
         do{
           check_player_stone = now_board[[xc, yc]];
           if(check_player_stone==player){
-            // 石をひっくり返す処理
+            // 自身の石がある場合は石をひっくり返す処理
             now_board = reverse_stone(xc, yc, xv, yv, player, opponent, now_board, number_square);
             // 一回でもひっくり返したらクリックした場所へ配置と描画とプレイヤー変更の処理のフラグを立てる
             var next_flg = "Next";

@@ -263,7 +263,6 @@ function game_end(now_board, number_square, pass_count){
     $('#get-count').empty();
     $('#end-game').html('<p class="end-text">黒の獲得数：' + black_get +
      '<br>白の獲得数：' + white_get + '</p><p class="win-text">' + winner +
-     '</p><button class="reset-game" onclick="window.location.reload();">リスタート</button>' +
-     '<button class="return-top" onclick="location.href=\'./howmany-block.html\'">トップに戻る</button>');
+     '</p><button class="game_start">リスタート</button>');
    }
 }
