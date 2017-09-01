@@ -222,47 +222,69 @@ function get_max_count(get_stone_count_all, number_square){
 // ゲーム終了を告げる関数
 function game_end(now_board, number_square, pass_count){
   var end_check = [];
+  var black_get = 0;
+  var white_get = 0;
   for(var i=0; i<number_square; i++){
     for(var j=0; j<number_square; j++){
       end_check.push(now_board[[j, i]]);
     }
   }
   if(pass_count==2){
-    var black_get = 0;
-    var white_get = 0;
-    for(var k=0; k<number_square*number_square; k++){
-      if(end_check[k]=='black'){
-        black_get = black_get + 1;
-      }else{
-        white_get = white_get + 1;
-      }
-    }
+    black_get = count_stone(end_check, number_square, black_get, white_get)[0];
+    white_get = count_stone(end_check, number_square, black_get, white_get)[1];
   }else if($.inArray('empty', end_check)<0){
-    var black_get = 0;
-    var white_get = 0;
-    for(var k=0; k<number_square*number_square; k++){
-      if(end_check[k]=='black'){
-        black_get = black_get + 1;
-      }else if(end_check[k]=='white'){
-        white_get = white_get + 1;
-      }
-    }
+    black_get = count_stone(end_check, number_square, black_get, white_get)[0];
+    white_get = count_stone(end_check, number_square, black_get, white_get)[1];
   }
-    if(typeof black_get=="undefined" && typeof white_get=="undefined"){
+    if(black_get==0 && white_get==0){
+      black_get = count_stone(end_check, number_square, black_get, white_get)[0];
+      white_get = count_stone(end_check, number_square, black_get, white_get)[1];
+      if(black_get>white_get){
+        $('#player-white').html('<p class="player-text">白：' + white_get + '個<br>獲得中！</p>');
+        $('#player-black').html('<p>黒優勢！</p>'+
+          '<img class="cheers" src="./img/cheer.png">'+
+          '<p class="player-text">黒：' + black_get + '個<br>獲得中！</p>');
+      }else if(black_get<white_get){
+        $('#player-white').html('<p>白優勢！</p>'+
+          '<img class="cheers" src="./img/cheer.png">'+
+          '<p class="player-text">白：' + white_get + '個<br>獲得中！</p>');
+        $('#player-black').html('<p class="player-text">黒：' + black_get + '個<br>獲得中！</p>');
+      }else{
+        $('#player-white').html('<p class="player-text">白：' + white_get + '個<br>獲得中！</p>');
+        $('#player-black').html('<p class="player-text">黒：' + black_get + '個<br>獲得中！</p>');
+      }
 
     }else{
-    var winner;
-    if(black_get==white_get){
-      winner = "引き分け！";
-    }else if(black_get>white_get){
-      winner = "黒の勝ち！";
-    }else{
-      winner = "白の勝ち！";
-    }
-    $('#now-player').empty();
-    $('#get-count').empty();
-    $('#end-game').html('<p class="end-text">黒の獲得数：' + black_get +
-     '<br>白の獲得数：' + white_get + '</p><p class="win-text">' + winner +
-     '</p><button class="game_start">リスタート</button>');
+      var winner;
+      if(black_get==white_get){
+        winner = "引き分け！";
+        $('#player-white').empty();
+        $('#player-black').empty();
+      }else if(black_get>white_get){
+        winner = "黒の勝ち！";
+        $('#player-white').html('<img class="gakkuri" src="./img/gakkuri.png">');
+        $('#player-black').html('<img class="cheers" src="./img/cheer.png">');
+      }else{
+        winner = "白の勝ち！";
+        $('#player-white').html('<img class="cheers" src="./img/cheer.png">');
+        $('#player-black').html('<img class="gakkuri" src="./img/gakkuri.png">');
+      }
+      $('#now-player').empty();
+      $('#get-count').empty();
+      $('#end-game').html('<p class="end-text">黒の獲得数：' + black_get +
+       '<br>白の獲得数：' + white_get + '</p><p class="win-text">' + winner +
+       '</p><button class="game_start">リスタート</button>');
    }
+}
+
+// ボードの中の黒白のマスの数を数える関数
+function count_stone(end_check, number_square, black_get, white_get){
+  for(var k=0; k<number_square*number_square; k++){
+    if(end_check[k]=='black'){
+      black_get = black_get + 1;
+    }else if(end_check[k]=='white'){
+      white_get = white_get + 1;
+    }
+  }
+  return [black_get, white_get];
 }

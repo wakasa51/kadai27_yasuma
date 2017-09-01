@@ -24,7 +24,7 @@
   <div id="now-player"></div>
   <div id="get-count"></div>
   <div id="end-game"></div>
-  <button class="return-top" onclick="window.location.reload();">マス選択に戻る</button>
+  <div id="return-top"></div>
 </div>
 <script>
 $(document).ready(function(){
@@ -43,10 +43,13 @@ $(document).ready(function(){
   $('#form').html(first.join(''));
 
   $(document).on("click", (".game_start"),function(){
+    $('#return-top').html('<button class="return-top" onclick="window.location.reload();">マス選択に戻る</button>');
     if(number_square==0){
       number_square = document.top_form.select.value;
       $("#form").empty();
     }
+    $("#player-black").empty();
+    $("#player-white").empty();
     $("#get-count").empty();
     $("#end-game").empty();
     // 最初の盤面を表示
