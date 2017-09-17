@@ -22,10 +22,6 @@ public class Word{
 		this.japanese= japanese;
 	}
 
-	public void enterWords(){
-
-	}
-
 	public String toString(){
 		return "英単語：" + this.english + "  日本語：" + this.japanese;
 	}
