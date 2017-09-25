@@ -1,0 +1,302 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+body {
+    font-family: Lato, "Noto Sans JP", "游ゴシック Medium", "游ゴシック体", "Yu Gothic Medium", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+
+.wrapper{
+	max-width: 960px;
+	margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/*ログイン認証系ページ*/
+.cert-l{
+  max-width: 500px;
+  font-size: 20px;
+  margin: 10%;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center;
+}
+
+.cert_form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.input-f{
+  margin: 5px;
+  width: 250px;
+  font-family: "ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","メイリオ",Meiryo,Osaka,"ＭＳ Ｐゴシック","MS PGothic","MS Gothic","ＭＳ ゴシック","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.login-button{
+  width: 250px;
+  height: 40px;
+  background-color: white;
+  color: forestgreen;
+  border: solid 1px forestgreen;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.reg{
+  width: 250px;
+  height: 40px;
+  background-color: #fff;
+  color: #ff7f50;
+  border: solid 1px #ff7f50;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.cert-msg{
+  width: 250px;
+  height: 50px;
+  font-size: 15px;
+  text-align: center;
+  margin: 10px;
+  background-color: #ffffe0;
+}
+
+/*トップページ*/
+.welcom-t{
+  font-size: 18px;
+}
+
+.search-inputs {
+  font-family: "fontawesome";
+}
+
+.head{
+  display: flex;
+  flex-direction: column;
+  border-bottom: solid 10px #c0c0c0;
+}
+
+.idx-form{
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+}
+
+.search{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+}
+
+.select-shelf{
+  display: flex;
+}
+
+.search-inputs{
+  font-size: 12px;
+  background-color: #87cefa;
+  color: #696969;
+  border: solid 1px #87cefa;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.logout{
+  font-size: 12px;
+  background-color: #32cd32;
+  color: #fff;
+  border: solid 1px #32cd32;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+
+.mybook-btn{
+  font-size: 12px;
+  background-color: #fff;
+  color: #ff8c00;
+  border: solid 1px #ff8c00;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.others-btn{
+  font-size: 12px;
+  background-color: #fff;
+  color: #0000cd;
+  border: solid 1px #0000cd;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.idx-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-end;
+  width: 270px;
+  height: 350px;
+  margin:5px 25px;
+}
+
+.user-name{
+  background-color: #afeeee;
+}
+
+
+/*結果ページ*/
+.head-text{
+  font-size: 25px;
+  padding: 10px 50px;
+  background-color: #f5f5f5;
+}
+
+.book-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.book-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:flex-end;
+  width: 270px;
+  height: 300px;
+  margin:5px 25px;
+}
+
+.book-img{
+  width: 100px;
+  margin: 5px;
+}
+
+.book-text{
+  font-size: 15px;
+  margin: 5px;
+}
+
+.breg-btn{
+  width: 100px;
+  height: 30px;
+  background-color: #fff;
+  color: #ff1493;
+  border: solid 1px #ff1493;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.r-wrap{
+  flex-direction: column;
+}
+
+.r-menu{
+  display: flex;
+  justify-content: space-between;
+  float: none;
+}
+
+.return-btn{
+  font-size: 10px;
+  width: 120px;
+  height: 40px;
+  background-color: #1e90ff;
+  color: #fff;
+  border: solid 1px #1e90ff;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 20px;
+}
+
+.logout-btn{
+  font-size: 10px;
+  width: 120px;
+  height: 40px;
+  background-color: #32cd32;
+  color: #fff;
+  border: solid 1px #32cd32;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 20px;
+}
+
+.rb1{
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  opacity: 0.5;
+}
+
+.lb1{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.5;
+}
+
+.rb1:hover{
+  opacity: 0.8;
+}
+
+.lb1:hover{
+  opacity: 0.8;
+}
+
+.book-reg-btn{
+  font-size: 10px;
+  width: 120px;
+  height: 40px;
+  background-color: #008b8b;
+  color: #fff;
+  border: solid 1px #008b8b;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 20px;
+}
+
+.book-rental-btn{
+  font-size: 10px;
+  width: 120px;
+  height: 40px;
+  background-color: #ff8c00;
+  color: #fff;
+  border: solid 1px #ff8c00;
+  border-radius: 5px;
+  padding: 3px;
+  margin: 20px;
+}
+
+/*本の登録ページ*/
+.bookreg{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  margin: 50px auto;
+  height: 700px;
+}
+
+.btn-center{
+  display: flex;
+  justify-content: center;
+}
+
+/*メッセージページ*/
+.send-btn{
+  width: 100px;
+  height: 30px;
+  background-color: #fff;
+  color: #cd853f;
+  border: solid 1px #cd853f;
+  border-radius: 5px;
+  margin: 20px 0;
+}

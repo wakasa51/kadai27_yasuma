@@ -1,0 +1,32 @@
+body{
+	line-height: 2.5em;
+	font-size: 18px;
+		text-align: center;
+}
+.formtag{
+	text-align: center;
+}
+btn{
+	width: 40px;
+	height: 20px;
+}
+.title{
+	font-size: 30px;
+}
+.caution{
+	color: red;
+}
+
+.time{
+	color: bule;
+}
+
+.result{
+	color: red;
+	font-size: 24px;
+}
+
+img{
+	width: 300px;
+	height: 250px;
+}
